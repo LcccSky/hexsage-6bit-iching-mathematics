@@ -62,7 +62,7 @@ Every episode below includes an **auto-playing mathematical animation preview**,
 
 ### EP.01 — The 60-Chronon Clock: Modular Arithmetic & 12 Lifecycle Stages
 - **Core Mathematical Formalism**: `LCM(10, 12) = 60, Parity Lock S ≡ B (mod 2), Bi-Directional Sine Wave Thermodynamics`
-- **Live Web Sandbox**: [**I Ching Online & True Solar Time Calendar Engine ↗**](https://hexsage.ai/) &nbsp;|&nbsp; [**6-Bit I Ching Generator ↗**](https://hexsage.ai/i-ching-generator) &nbsp;|&nbsp; [**Launch 2K HTML5 Canvas Visualizer ↗**](docs/visualizers/ep01.html)
+- **Live Web Sandbox**: [**I Ching Online & True Solar Time Calendar Engine ↗**](https://hexsage.ai/) &nbsp;|&nbsp; [**6-Bit I Ching Generator ↗**](https://hexsage.ai/i-ching-generator) &nbsp;|&nbsp; [**Launch 2K HTML5 Canvas Visualizer ↗**](https://lcccsky.github.io/hexsage-6bit-iching-mathematics/docs/visualizers/ep01.html)
 
 <p align="center">
   <a href="https://hexsage.ai/"><img src="assets/thumbnails/ep01.jpg" alt="EP.01 The 60-Chronon Clock: Modular Arithmetic & 12 Lifecycle Stages 4K Thumbnail" width="48%" /></a>
@@ -71,7 +71,7 @@ Every episode below includes an **auto-playing mathematical animation preview**,
 
 ### EP.02 — Jing Fang's 64 Hexagrams: 6-Bit XOR State Machine & Game Theory
 - **Core Mathematical Formalism**: `Boolean Space {0,1}⁶, Bitwise XOR Masking b_next = b_curr ⊕ Mask, |Shi - Ying| = 3 Invariant`
-- **Live Web Sandbox**: [**I Ching Interpretations & Complete 64 Hexagrams Chart ↗**](https://hexsage.ai/blog/64-hexagrams) &nbsp;|&nbsp; [**Interactive I Ching Hexagram Generator ↗**](https://hexsage.ai/i-ching-generator) &nbsp;|&nbsp; [**Launch 2K HTML5 Canvas Visualizer ↗**](docs/visualizers/ep02.html)
+- **Live Web Sandbox**: [**I Ching Interpretations & Complete 64 Hexagrams Chart ↗**](https://hexsage.ai/blog/64-hexagrams) &nbsp;|&nbsp; [**Interactive I Ching Hexagram Generator ↗**](https://hexsage.ai/i-ching-generator) &nbsp;|&nbsp; [**Launch 2K HTML5 Canvas Visualizer ↗**](https://lcccsky.github.io/hexsage-6bit-iching-mathematics/docs/visualizers/ep02.html)
 
 <p align="center">
   <a href="https://hexsage.ai/blog/64-hexagrams"><img src="assets/thumbnails/ep02.jpg" alt="EP.02 Jing Fang's 64 Hexagrams: 6-Bit XOR State Machine & Game Theory 4K Thumbnail" width="48%" /></a>
@@ -80,7 +80,7 @@ Every episode below includes an **auto-playing mathematical animation preview**,
 
 ### EP.03 — The 4-Force Feedback Loop: Directed Graphs on Modulo-5 (Z₅)
 - **Core Mathematical Formalism**: `Digraphs on Z₅, Target (Yong-Shen), Source (+1), Threat (-1), and The Bridge Theorem (+240% Gain)`
-- **Live Web Sandbox**: [**I Ching Interpretation & Line-by-Line Reading Tool ↗**](https://hexsage.ai/iching-interpretation) &nbsp;|&nbsp; [**Hexagram 43 Guai (Breakthrough) Analysis ↗**](https://hexsage.ai/blog/64-hexagrams/43-guai) &nbsp;|&nbsp; [**Launch 2K HTML5 Canvas Visualizer ↗**](docs/visualizers/ep03.html)
+- **Live Web Sandbox**: [**I Ching Interpretation & Line-by-Line Reading Tool ↗**](https://hexsage.ai/iching-interpretation) &nbsp;|&nbsp; [**Hexagram 43 Guai (Breakthrough) Analysis ↗**](https://hexsage.ai/blog/64-hexagrams/43-guai) &nbsp;|&nbsp; [**Launch 2K HTML5 Canvas Visualizer ↗**](https://lcccsky.github.io/hexsage-6bit-iching-mathematics/docs/visualizers/ep03.html)
 
 <p align="center">
   <a href="https://hexsage.ai/iching-interpretation"><img src="assets/thumbnails/ep03.jpg" alt="EP.03 The 4-Force Feedback Loop: Directed Graphs on Modulo-5 (Z₅) 4K Thumbnail" width="48%" /></a>
@@ -89,7 +89,7 @@ Every episode below includes an **auto-playing mathematical animation preview**,
 
 ### EP.04 — Dual Space-Time Gravity: Dark Move vs. Day Break Bifurcation
 - **Core Mathematical Formalism**: `180° Diametric Clash Operator (b + 6 mod 12), Nonlinear State Bifurcation (+120% vs -100%)`
-- **Live Web Sandbox**: [**How to Read Changing Lines & Static Line Clashes ↗**](https://hexsage.ai/how-to-read-changing-lines) &nbsp;|&nbsp; [**Cast an I Ching Reading Online ↗**](https://hexsage.ai/) &nbsp;|&nbsp; [**Launch 2K HTML5 Canvas Visualizer ↗**](docs/visualizers/ep04.html)
+- **Live Web Sandbox**: [**How to Read Changing Lines & Static Line Clashes ↗**](https://hexsage.ai/how-to-read-changing-lines) &nbsp;|&nbsp; [**Cast an I Ching Reading Online ↗**](https://hexsage.ai/) &nbsp;|&nbsp; [**Launch 2K HTML5 Canvas Visualizer ↗**](https://lcccsky.github.io/hexsage-6bit-iching-mathematics/docs/visualizers/ep04.html)
 
 <p align="center">
   <a href="https://hexsage.ai/how-to-read-changing-lines"><img src="assets/thumbnails/ep04.jpg" alt="EP.04 Dual Space-Time Gravity: Dark Move vs. Day Break Bifurcation 4K Thumbnail" width="48%" /></a>
@@ -98,7 +98,7 @@ Every episode below includes an **auto-playing mathematical animation preview**,
 
 ### EP.05 — Hidden State Machines: Moving Lines, XOR Flips & Latent Fu-Shen
 - **Core Mathematical Formalism**: `State Transition S₁ = S₀ ⊕ M, 1-to-1 Channel Isolation, Latent Variable Lookup from Palace Root`
-- **Live Web Sandbox**: [**How to Read Changing Lines (0 to 6 Moving Lines Rules) ↗**](https://hexsage.ai/how-to-read-changing-lines) &nbsp;|&nbsp; [**Hexagram 33 Dun (Retreat) Line Study ↗**](https://hexsage.ai/blog/64-hexagrams/33-dun) &nbsp;|&nbsp; [**Launch 2K HTML5 Canvas Visualizer ↗**](docs/visualizers/ep05.html)
+- **Live Web Sandbox**: [**How to Read Changing Lines (0 to 6 Moving Lines Rules) ↗**](https://hexsage.ai/how-to-read-changing-lines) &nbsp;|&nbsp; [**Hexagram 33 Dun (Retreat) Line Study ↗**](https://hexsage.ai/blog/64-hexagrams/33-dun) &nbsp;|&nbsp; [**Launch 2K HTML5 Canvas Visualizer ↗**](https://lcccsky.github.io/hexsage-6bit-iching-mathematics/docs/visualizers/ep05.html)
 
 <p align="center">
   <a href="https://hexsage.ai/how-to-read-changing-lines"><img src="assets/thumbnails/ep05.jpg" alt="EP.05 Hidden State Machines: Moving Lines, XOR Flips & Latent Fu-Shen 4K Thumbnail" width="48%" /></a>
@@ -107,7 +107,7 @@ Every episode below includes an **auto-playing mathematical animation preview**,
 
 ### EP.06 — The 60-Chronon Null Matrix & Exact Event Timing Solver (T*)
 - **Core Mathematical Formalism**: `Modulo-12 Remainder Shift (12 - 10 = 2 Null Slots), Bottleneck Resolution T* = argmin Resolve(B)`
-- **Live Web Sandbox**: [**Yes No Oracle — Instant 6-Line Timing & Decision Verdict ↗**](https://hexsage.ai/yes-no-oracle) &nbsp;|&nbsp; [**Hexagram 32 Heng (Duration) Timing Guide ↗**](https://hexsage.ai/blog/64-hexagrams/32-heng) &nbsp;|&nbsp; [**Launch 2K HTML5 Canvas Visualizer ↗**](docs/visualizers/ep06.html)
+- **Live Web Sandbox**: [**Yes No Oracle — Instant 6-Line Timing & Decision Verdict ↗**](https://hexsage.ai/yes-no-oracle) &nbsp;|&nbsp; [**Hexagram 32 Heng (Duration) Timing Guide ↗**](https://hexsage.ai/blog/64-hexagrams/32-heng) &nbsp;|&nbsp; [**Launch 2K HTML5 Canvas Visualizer ↗**](https://lcccsky.github.io/hexsage-6bit-iching-mathematics/docs/visualizers/ep06.html)
 
 <p align="center">
   <a href="https://hexsage.ai/yes-no-oracle"><img src="assets/thumbnails/ep06.jpg" alt="EP.06 The 60-Chronon Null Matrix & Exact Event Timing Solver (T*) 4K Thumbnail" width="48%" /></a>
@@ -116,7 +116,7 @@ Every episode below includes an **auto-playing mathematical animation preview**,
 
 ### EP.07 — 1060 AD Shao Yong × 1703 Leibniz: The Fuxi 6-Bit Binary Matrix
 - **Core Mathematical Formalism**: `Complete Binary Tree (2⁰ → 2⁶ = 64), 8×8 Cartesian Tensor Grid, Bitwise Complement H + H̅ = 63`
-- **Live Web Sandbox**: [**64 Hexagrams Binary Matrix & I Ching Hexagram Chart ↗**](https://hexsage.ai/blog/64-hexagrams) &nbsp;|&nbsp; [**Carl Jung Synchronicity & Binary Epistemology ↗**](https://hexsage.ai/blog/i-ching-guides/carl-jung-i-ching-synchronicity) &nbsp;|&nbsp; [**Launch 2K HTML5 Canvas Visualizer ↗**](docs/visualizers/ep07.html)
+- **Live Web Sandbox**: [**64 Hexagrams Binary Matrix & I Ching Hexagram Chart ↗**](https://hexsage.ai/blog/64-hexagrams) &nbsp;|&nbsp; [**Carl Jung Synchronicity & Binary Epistemology ↗**](https://hexsage.ai/blog/i-ching-guides/carl-jung-i-ching-synchronicity) &nbsp;|&nbsp; [**Launch 2K HTML5 Canvas Visualizer ↗**](https://lcccsky.github.io/hexsage-6bit-iching-mathematics/docs/visualizers/ep07.html)
 
 <p align="center">
   <a href="https://hexsage.ai/blog/64-hexagrams"><img src="assets/thumbnails/ep07.jpg" alt="EP.07 1060 AD Shao Yong × 1703 Leibniz: The Fuxi 6-Bit Binary Matrix 4K Thumbnail" width="48%" /></a>
@@ -125,7 +125,7 @@ Every episode below includes an **auto-playing mathematical animation preview**,
 
 ### EP.08 — The M=15 Magic Square & Trigram Topology: He-Tu & Luo-Shu
 - **Core Mathematical Formalism**: `Modulo-5 Cosets (C_i - S_i = 5), 3×3 Magic Square Constant M=15, Dihedral Group D₄ Symmetry Breaking`
-- **Live Web Sandbox**: [**Online I Ching Trigram & Hexagram Generator ↗**](https://hexsage.ai/i-ching-generator) &nbsp;|&nbsp; [**Hexagram 11 Tai (Harmony) Structural Balance ↗**](https://hexsage.ai/blog/64-hexagrams/11-tai) &nbsp;|&nbsp; [**Launch 2K HTML5 Canvas Visualizer ↗**](docs/visualizers/ep08.html)
+- **Live Web Sandbox**: [**Online I Ching Trigram & Hexagram Generator ↗**](https://hexsage.ai/i-ching-generator) &nbsp;|&nbsp; [**Hexagram 11 Tai (Harmony) Structural Balance ↗**](https://hexsage.ai/blog/64-hexagrams/11-tai) &nbsp;|&nbsp; [**Launch 2K HTML5 Canvas Visualizer ↗**](https://lcccsky.github.io/hexsage-6bit-iching-mathematics/docs/visualizers/ep08.html)
 
 <p align="center">
   <a href="https://hexsage.ai/i-ching-generator"><img src="assets/thumbnails/ep08.jpg" alt="EP.08 The M=15 Magic Square & Trigram Topology: He-Tu & Luo-Shu 4K Thumbnail" width="48%" /></a>
@@ -134,7 +134,7 @@ Every episode below includes an **auto-playing mathematical animation preview**,
 
 ### EP.09 — The 12 Tidal Hexagrams & 24 Solar Terms: 6-Bit Shift Register
 - **Core Mathematical Formalism**: `Circular Shift Register Hamming Weight E(k) = 3 + 3·sin((k-2)π/6), Thermal Phase Lag Δφ ≈ 30°`
-- **Live Web Sandbox**: [**Hexagram 24 Fu (Return) Inflection Point Analysis ↗**](https://hexsage.ai/blog/64-hexagrams/24-fu) &nbsp;|&nbsp; [**All 64 I Ching Hexagrams Explained ↗**](https://hexsage.ai/blog/64-hexagrams) &nbsp;|&nbsp; [**Launch 2K HTML5 Canvas Visualizer ↗**](docs/visualizers/ep09.html)
+- **Live Web Sandbox**: [**Hexagram 24 Fu (Return) Inflection Point Analysis ↗**](https://hexsage.ai/blog/64-hexagrams/24-fu) &nbsp;|&nbsp; [**All 64 I Ching Hexagrams Explained ↗**](https://hexsage.ai/blog/64-hexagrams) &nbsp;|&nbsp; [**Launch 2K HTML5 Canvas Visualizer ↗**](https://lcccsky.github.io/hexsage-6bit-iching-mathematics/docs/visualizers/ep09.html)
 
 <p align="center">
   <a href="https://hexsage.ai/blog/64-hexagrams/24-fu"><img src="assets/thumbnails/ep09.jpg" alt="EP.09 The 12 Tidal Hexagrams & 24 Solar Terms: 6-Bit Shift Register 4K Thumbnail" width="48%" /></a>
@@ -143,7 +143,7 @@ Every episode below includes an **auto-playing mathematical animation preview**,
 
 ### EP.10 — Why 49 Yarrow Stalks Make Yang Move 3× More Than Yin (1:5:7:3 Proof)
 - **Core Mathematical Formalism**: `Modulo-4 Remainder Tree: P(6)=1/16, P(7)=5/16, P(8)=7/16, P(9)=3/16; Shannon Entropy 1.754 vs 1.811 bits`
-- **Live Web Sandbox**: [**Yarrow Stalks I Ching — 49-Stalk 18-Change Interactive Simulator ↗**](https://hexsage.ai/yarrow-stalks-i-ching) &nbsp;|&nbsp; [**3-Coin vs Yarrow Stalks I Ching Generator ↗**](https://hexsage.ai/i-ching-generator) &nbsp;|&nbsp; [**Launch 2K HTML5 Canvas Visualizer ↗**](docs/visualizers/ep10.html)
+- **Live Web Sandbox**: [**Yarrow Stalks I Ching — 49-Stalk 18-Change Interactive Simulator ↗**](https://hexsage.ai/yarrow-stalks-i-ching) &nbsp;|&nbsp; [**3-Coin vs Yarrow Stalks I Ching Generator ↗**](https://hexsage.ai/i-ching-generator) &nbsp;|&nbsp; [**Launch 2K HTML5 Canvas Visualizer ↗**](https://lcccsky.github.io/hexsage-6bit-iching-mathematics/docs/visualizers/ep10.html)
 
 <p align="center">
   <a href="https://hexsage.ai/yarrow-stalks-i-ching"><img src="assets/thumbnails/ep10.jpg" alt="EP.10 Why 49 Yarrow Stalks Make Yang Move 3× More Than Yin (1:5:7:3 Proof) 4K Thumbnail" width="48%" /></a>
@@ -152,7 +152,7 @@ Every episode below includes an **auto-playing mathematical animation preview**,
 
 ### EP.11 — 6 Stages of Leverage: Hexagram #1 Qian [111111] & Kelly Criterion
 - **Core Mathematical Formalism**: `S-Curve Logistic Growth, Kelly Position Sizing f* = (bp - q)/b, Decentralized Protocol (Yong Jiu)`
-- **Live Web Sandbox**: [**Hexagram 1 Qian (The Creative) — All 6 Lines & Strategic Guide ↗**](https://hexsage.ai/blog/64-hexagrams/01-qian) &nbsp;|&nbsp; [**I Ching Career & Capital Allocation Sandbox ↗**](https://hexsage.ai/i-ching-career-guidance) &nbsp;|&nbsp; [**Launch 2K HTML5 Canvas Visualizer ↗**](docs/visualizers/ep11.html)
+- **Live Web Sandbox**: [**Hexagram 1 Qian (The Creative) — All 6 Lines & Strategic Guide ↗**](https://hexsage.ai/blog/64-hexagrams/01-qian) &nbsp;|&nbsp; [**I Ching Career & Capital Allocation Sandbox ↗**](https://hexsage.ai/i-ching-career-guidance) &nbsp;|&nbsp; [**Launch 2K HTML5 Canvas Visualizer ↗**](https://lcccsky.github.io/hexsage-6bit-iching-mathematics/docs/visualizers/ep11.html)
 
 <p align="center">
   <a href="https://hexsage.ai/blog/64-hexagrams/01-qian"><img src="assets/thumbnails/ep11.jpg" alt="EP.11 6 Stages of Leverage: Hexagram #1 Qian [111111] & Kelly Criterion 4K Thumbnail" width="48%" /></a>
@@ -161,7 +161,7 @@ Every episode below includes an **auto-playing mathematical animation preview**,
 
 ### EP.12 — Oriental Game Theory: Six-Yao Matrix for Forensic Cashflow Audits
 - **Core Mathematical Formalism**: `2×2 SELF [Shi] vs OTHER [Ying] Payoff Matrix, Cashflow Differential d(Cash)/dt = α·Output - β·Peer`
-- **Live Web Sandbox**: [**I Ching Career Guidance & Business Decision Matrix ↗**](https://hexsage.ai/i-ching-career-guidance) &nbsp;|&nbsp; [**Interpret Your Hexagram & Moving Lines ↗**](https://hexsage.ai/iching-interpretation) &nbsp;|&nbsp; [**Launch 2K HTML5 Canvas Visualizer ↗**](docs/visualizers/ep12.html)
+- **Live Web Sandbox**: [**I Ching Career Guidance & Business Decision Matrix ↗**](https://hexsage.ai/i-ching-career-guidance) &nbsp;|&nbsp; [**Interpret Your Hexagram & Moving Lines ↗**](https://hexsage.ai/iching-interpretation) &nbsp;|&nbsp; [**Launch 2K HTML5 Canvas Visualizer ↗**](https://lcccsky.github.io/hexsage-6bit-iching-mathematics/docs/visualizers/ep12.html)
 
 <p align="center">
   <a href="https://hexsage.ai/i-ching-career-guidance"><img src="assets/thumbnails/ep12.jpg" alt="EP.12 Oriental Game Theory: Six-Yao Matrix for Forensic Cashflow Audits 4K Thumbnail" width="48%" /></a>
