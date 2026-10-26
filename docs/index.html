@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>HexSage 6-Bit I Ching Mathematics & Celestial Astrolabe — Open Atlas</title>
+<meta name="description" content="Open-source 6-Bit I Ching Boolean Hypercube (Q6), 49-Yarrow-Stalk 1:5:7:3 Markov Chain, 12-Episode 2K Interactive Astrolabe Visualizers, and 64 Hexagrams Chart powered by HexSage (hexsage.ai)."/>
+<style>
+  :root { --bg:#080c14; --card:#111827; --card-alt:#0d1322; --gold:#d4af37; --gold-lt:#f5d97e; --blue:#38bdf8; --emerald:#10b981; --text:#f8fafc; --muted:#94a3b8; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.6; padding:28px 18px 60px; }
+  .wrap { max-width:1180px; margin:0 auto; }
+  .hero { background:radial-gradient(circle at top,#17223b 0%,#0b101d 70%); border:1px solid rgba(212,175,55,0.4); border-radius:20px; padding:36px 28px; text-align:center; margin-bottom:32px; box-shadow:0 20px 50px rgba(0,0,0,0.6); }
+  .eyebrow { display:inline-block; background:rgba(212,175,55,0.14); border:1px solid rgba(212,175,55,0.45); color:var(--gold-lt); font-size:12px; font-weight:700; letter-spacing:0.08em; padding:5px 14px; border-radius:999px; margin-bottom:14px; text-transform:uppercase; }
+  h1 { font-family:Georgia,serif; font-size:clamp(26px,4vw,40px); color:var(--gold-lt); margin-bottom:12px; line-height:1.25; }
+  .sub { color:var(--muted); max-width:820px; margin:0 auto 24px; font-size:15.5px; }
+  .hero-showcase { display:grid; grid-template-columns:2fr 1fr; gap:16px; max-width:920px; margin:0 auto 26px; align-items:center; }
+  .hero-showcase img { width:100%; border-radius:12px; border:1px solid rgba(212,175,55,0.3); display:block; }
+  .cta-row { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+  .btn { padding:11px 20px; border-radius:10px; font-weight:700; text-decoration:none; font-size:13.5px; transition:.18s; display:inline-flex; align-items:center; gap:6px; }
+  .btn-gold { background:linear-gradient(135deg,#f5d97e,#d4af37); color:#080c14; box-shadow:0 4px 20px rgba(212,175,55,0.3); }
+  .btn-gold:hover { transform:translateY(-2px); }
+  .btn-outline { background:rgba(255,255,255,0.03); border:1px solid rgba(212,175,55,0.45); color:var(--gold-lt); }
+  .btn-outline:hover { border-color:var(--gold-lt); background:rgba(212,175,55,0.1); }
+  .sec { background:var(--card); border:1px solid rgba(255,255,255,0.08); border-radius:18px; padding:28px; margin-bottom:30px; }
+  .sec-h2 { font-family:Georgia,serif; font-size:24px; color:var(--gold-lt); margin-bottom:8px; }
+  .sec-lead { color:var(--muted); font-size:14px; margin-bottom:22px; }
+  /* Live Q6 Widget */
+  .q6-box { background:var(--card-alt); border:1px solid rgba(56,189,248,0.28); border-radius:14px; padding:20px; display:grid; grid-template-columns:1fr 1fr; gap:20px; align-items:center; }
+  .line-toggles { display:flex; flex-direction:column-reverse; gap:8px; }
+  .line-row { display:flex; align-items:center; gap:10px; background:#141e33; padding:7px 12px; border-radius:8px; font-size:13px; }
+  .line-bar { flex:1; height:10px; background:var(--gold); border-radius:3px; position:relative; cursor:pointer; }
+  .line-bar.yin { background:linear-gradient(90deg,var(--blue) 0 42%,transparent 42% 58%,var(--blue) 58% 100%); }
+  /* Course Grid */
+  .course-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(510px,1fr)); gap:20px; }
+  .media-card { background:var(--card-alt); border:1px solid rgba(255,255,255,0.07); border-radius:14px; overflow:hidden; display:flex; flex-direction:column; }
+  .media-pair { display:grid; grid-template-columns:1fr 1fr; gap:6px; padding:8px; background:#070a12; }
+  .media-pair img { width:100%; aspect-ratio:16/9; object-fit:cover; border-radius:8px; display:block; }
+  .media-body { padding:16px 18px 18px; }
+  .badge-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; gap:8px; flex-wrap:wrap; }
+  .ep-tag { font-size:11px; font-weight:800; letter-spacing:0.06em; color:var(--blue); background:rgba(56,189,248,0.12); padding:3px 9px; border-radius:6px; }
+  .viz-pill { font-size:11.5px; font-weight:700; color:#080c14; background:var(--emerald); padding:4px 10px; border-radius:6px; text-decoration:none; }
+  .media-body h3 { font-size:16.5px; margin-bottom:6px; }
+  .media-body h3 a, .vol-info h3 a { color:var(--text); text-decoration:none; }
+  .media-body h3 a:hover, .vol-info h3 a:hover { color:var(--gold-lt); }
+  .math-note { color:var(--muted); font-size:12.5px; font-family:monospace; margin-bottom:12px; }
+  .card-links { display:flex; flex-direction:column; gap:5px; font-size:13px; }
+  .link-gold { color:var(--gold-lt); text-decoration:none; font-weight:600; }
+  .link-blue { color:var(--blue); text-decoration:none; font-weight:600; }
+  /* Math Shorts Grid */
+  .vol-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:18px; }
+  .vol-card { background:var(--card-alt); border:1px solid rgba(212,175,55,0.18); border-radius:14px; padding:14px; }
+  .vol-visuals { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:12px; }
+  .vol-visuals img { width:100%; border-radius:8px; border:1px solid rgba(255,255,255,0.08); display:block; }
+  .vol-info h3 { font-size:15px; margin:6px 0; }
+  .eq-box { display:block; background:#070a12; color:var(--gold-lt); padding:6px 10px; border-radius:6px; font-size:12px; }
+  /* 64 Hexagrams Grid */
+  .hex-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(215px,1fr)); gap:11px; }
+  .hex-item { background:var(--card-alt); border:1px solid rgba(212,175,55,0.18); border-radius:10px; padding:12px; text-decoration:none; color:var(--text); display:block; transition:.15s; }
+  .hex-item:hover { border-color:var(--gold); transform:translateY(-2px); }
+  .bits { font-family:monospace; color:var(--blue); font-size:12px; font-weight:700; }
+  .title { font-weight:700; color:var(--gold-lt); margin-top:3px; font-size:14px; }
+  .sub-t { color:#cbd5e1; font-size:12px; font-style:italic; margin-bottom:4px; }
+  .desc { color:var(--muted); font-size:11.5px; }
+  @media (max-width:768px) {
+    .hero-showcase, .q6-box, .course-grid { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <span class="eyebrow">Open Mathematical Cosmology &amp; Decision Heuristics</span>
+    <h1>HexSage · 6-Bit I Ching State Machine &amp; 2K Celestial Astrolabe Atlas</h1>
+    <p class="sub">Bridging Shao Yong's 1060 AD Fuxi Binary Tree, Gottfried Wilhelm Leibniz's 1703 Binary Arithmetic, the 6D Boolean Hypercube (Q₆), 49-Yarrow-Stalk Asymmetric Markov Chains (1:5:7:3), and Strategic Game Theory.</p>
+    <div class="hero-showcase">
+      <a href="https://hexsage.ai/" target="_blank" rel="noopener">
+        <img src="../assets/previews/hero_3d_astrolabe_wide.gif" alt="HexSage 3D Celestial Astrolabe Real-Time Simulation" />
+      </a>
+      <a href="https://hexsage.ai/i-ching-generator" target="_blank" rel="noopener">
+        <img src="../assets/previews/hero_3d_cosmos_vertical.gif" alt="HexSage 9:16 3D Deep Space Hexagram Wheel" />
+      </a>
+    </div>
+    <div class="cta-row">
+      <a class="btn btn-gold" href="https://hexsage.ai/" target="_blank" rel="noopener">🧭 I Ching Online Casting Engine (hexsage.ai) ↗</a>
+      <a class="btn btn-outline" href="https://hexsage.ai/blog/64-hexagrams" target="_blank" rel="noopener">📊 64 Hexagrams Chart &amp; Interpretations ↗</a>
+      <a class="btn btn-outline" href="https://hexsage.ai/i-ching-generator" target="_blank" rel="noopener">🎲 6-Bit I Ching Generator ↗</a>
+      <a class="btn btn-outline" href="https://hexsage.ai/iching-interpretation" target="_blank" rel="noopener">📖 Hexagram &amp; Moving Lines Interpreter ↗</a>
+      <a class="btn btn-outline" href="https://hexsage.ai/how-to-read-changing-lines" target="_blank" rel="noopener">⚡ How to Read Changing Lines (0–6) ↗</a>
+      <a class="btn btn-outline" href="https://hexsage.ai/yarrow-stalks-i-ching" target="_blank" rel="noopener">🌿 49 Yarrow Stalks (1:5:7:3) Simulator ↗</a>
+      <a class="btn btn-outline" href="https://hexsage.ai/i-ching-career-guidance" target="_blank" rel="noopener">💼 Career &amp; Game Theory Matrix ↗</a>
+      <a class="btn btn-outline" href="https://hexsage.ai/yes-no-oracle" target="_blank" rel="noopener">⚖️ Yes No Oracle (6-Line Verdict) ↗</a>
+    </div>
+  </header>
+
+  <section class="sec">
+    <h2 class="sec-h2">⚡ Live Q₆ Boolean Hypercube &amp; Zhu Xi Moving-Line Calculator</h2>
+    <p class="sec-lead">Toggle any line between Yang (1) and Yin (0) or mark Moving Lines (M) to compute the bitwise XOR state transition S₁ = S₀ ⊕ M and Zhu Xi's classical reading rule:</p>
+    <div class="q6-box">
+      <div class="line-toggles" id="q6-lines"></div>
+      <div>
+        <div style="font-family:monospace;font-size:14px;color:var(--blue);margin-bottom:8px;" id="q6-formula">S₀ = 111111 ⊕ M = 000000 → S₁ = 111111 (d_H = 0)</div>
+        <div style="font-size:16px;font-weight:700;color:var(--gold-lt);margin-bottom:8px;" id="q6-zhuxi">0 Moving Lines: Read Primary Hexagram Judgment (Gua Ci) &amp; Image.</div>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Every moving line acts as a basis vector flip along the 6-dimensional hypercube Q₆. When multiple lines move simultaneously, Song dynasty scholar Zhu Xi's hierarchy weighs the primary state against the transformed state.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <a class="btn btn-gold" id="q6-link-interp" href="https://hexsage.ai/how-to-read-changing-lines" target="_blank" rel="noopener">Read Full Changing Lines Guide ↗</a>
+          <a class="btn btn-outline" href="https://hexsage.ai/iching-interpretation" target="_blank" rel="noopener">Open Line-by-Line Interpreter ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <h2 class="sec-h2">🎬 Part I: 12-Episode 3Blue1Brown × Celestial Astrolabe Course (2K HTML5 Visualizers)</h2>
+    <p class="sec-lead">Click <strong>Launch 2K Interactive Canvas</strong> on any episode to run the live HTML5 mathematical astrolabe in your browser, or open the corresponding tool on <strong>hexsage.ai</strong>:</p>
+    <div class="course-grid">
+      
+        <article class="media-card">
+          <div class="media-pair">
+            <a href="https://hexsage.ai/" target="_blank" rel="noopener">
+              <img src="../assets/thumbnails/ep01.jpg" alt="EP.01 The 60-Chronon Clock: Modular Arithmetic & 12 Lifecycle Stages" loading="lazy" />
+            </a>
+            <a href="visualizers/ep01.html" target="_blank">
+              <img src="../assets/previews/ep01.gif" alt="EP.01 Animated Preview" loading="lazy" />
+            </a>
+          </div>
+          <div class="media-body">
+            <div class="badge-row">
+              <span class="ep-tag">EPISODE 01</span>
+              <a class="viz-pill" href="visualizers/ep01.html" target="_blank">▶️ Launch 2K Interactive Canvas ↗</a>
+            </div>
+            <h3><a href="https://hexsage.ai/" target="_blank" rel="noopener">The 60-Chronon Clock: Modular Arithmetic & 12 Lifecycle Stages</a></h3>
+            <p class="math-note">LCM(10, 12) = 60, Parity Lock S ≡ B (mod 2), Bi-Directional Sine Wave Thermodynamics</p>
+            <div class="card-links">
+              <a class="link-gold" href="https://hexsage.ai/" target="_blank" rel="noopener">🧭 I Ching Online & True Solar Time Calendar Engine ↗</a>
+              <a class="link-blue" href="https://hexsage.ai/i-ching-generator" target="_blank" rel="noopener">⚡ 6-Bit I Ching Generator ↗</a>
+            </div>
+          </div>
+        </article>
+        <article class="media-card">
+          <div class="media-pair">
+            <a href="https://hexsage.ai/blog/64-hexagrams" target="_blank" rel="noopener">
+              <img src="../assets/thumbnails/ep02.jpg" alt="EP.02 Jing Fang's 64 Hexagrams: 6-Bit XOR State Machine & Game Theory" loading="lazy" />
+            </a>
+            <a href="visualizers/ep02.html" target="_blank">
+              <img src="../assets/previews/ep02.gif" alt="EP.02 Animated Preview" loading="lazy" />
+            </a>
+          </div>
+          <div class="media-body">
+            <div class="badge-row">
+              <span class="ep-tag">EPISODE 02</span>
+              <a class="viz-pill" href="visualizers/ep02.html" target="_blank">▶️ Launch 2K Interactive Canvas ↗</a>
+            </div>
+            <h3><a href="https://hexsage.ai/blog/64-hexagrams" target="_blank" rel="noopener">Jing Fang's 64 Hexagrams: 6-Bit XOR State Machine & Game Theory</a></h3>
+            <p class="math-note">Boolean Space {0,1}⁶, Bitwise XOR Masking b_next = b_curr ⊕ Mask, |Shi - Ying| = 3 Invariant</p>
+            <div class="card-links">
+              <a class="link-gold" href="https://hexsage.ai/blog/64-hexagrams" target="_blank" rel="noopener">🧭 I Ching Interpretations & Complete 64 Hexagrams Chart ↗</a>
+              <a class="link-blue" href="https://hexsage.ai/i-ching-generator" target="_blank" rel="noopener">⚡ Interactive I Ching Hexagram Generator ↗</a>
+            </div>
+          </div>
+        </article>
+        <article class="media-card">
+          <div class="media-pair">
+            <a href="https://hexsage.ai/iching-interpretation" target="_blank" rel="noopener">
+              <img src="../assets/thumbnails/ep03.jpg" alt="EP.03 The 4-Force Feedback Loop: Directed Graphs on Modulo-5 (Z₅)" loading="lazy" />
+            </a>
+            <a href="visualizers/ep03.html" target="_blank">
+              <img src="../assets/previews/ep03.gif" alt="EP.03 Animated Preview" loading="lazy" />
+            </a>
+          </div>
+          <div class="media-body">
+            <div class="badge-row">
+              <span class="ep-tag">EPISODE 03</span>
+              <a class="viz-pill" href="visualizers/ep03.html" target="_blank">▶️ Launch 2K Interactive Canvas ↗</a>
+            </div>
+            <h3><a href="https://hexsage.ai/iching-interpretation" target="_blank" rel="noopener">The 4-Force Feedback Loop: Directed Graphs on Modulo-5 (Z₅)</a></h3>
+            <p class="math-note">Digraphs on Z₅, Target (Yong-Shen), Source (+1), Threat (-1), and The Bridge Theorem (+240% Gain)</p>
+            <div class="card-links">
+              <a class="link-gold" href="https://hexsage.ai/iching-interpretation" target="_blank" rel="noopener">🧭 I Ching Interpretation & Line-by-Line Reading Tool ↗</a>
+              <a class="link-blue" href="https://hexsage.ai/blog/64-hexagrams/43-guai" target="_blank" rel="noopener">⚡ Hexagram 43 Guai (Breakthrough) Analysis ↗</a>
+            </div>
+          </div>
+        </article>
+        <article class="media-card">
+          <div class="media-pair">
+            <a href="https://hexsage.ai/how-to-read-changing-lines" target="_blank" rel="noopener">
+              <img src="../assets/thumbnails/ep04.jpg" alt="EP.04 Dual Space-Time Gravity: Dark Move vs. Day Break Bifurcation" loading="lazy" />
+            </a>
+            <a href="visualizers/ep04.html" target="_blank">
+              <img src="../assets/previews/ep04.gif" alt="EP.04 Animated Preview" loading="lazy" />
+            </a>
+          </div>
+          <div class="media-body">
+            <div class="badge-row">
+              <span class="ep-tag">EPISODE 04</span>
+              <a class="viz-pill" href="visualizers/ep04.html" target="_blank">▶️ Launch 2K Interactive Canvas ↗</a>
+            </div>
+            <h3><a href="https://hexsage.ai/how-to-read-changing-lines" target="_blank" rel="noopener">Dual Space-Time Gravity: Dark Move vs. Day Break Bifurcation</a></h3>
+            <p class="math-note">180° Diametric Clash Operator (b + 6 mod 12), Nonlinear State Bifurcation (+120% vs -100%)</p>
+            <div class="card-links">
+              <a class="link-gold" href="https://hexsage.ai/how-to-read-changing-lines" target="_blank" rel="noopener">🧭 How to Read Changing Lines & Static Line Clashes ↗</a>
+              <a class="link-blue" href="https://hexsage.ai/" target="_blank" rel="noopener">⚡ Cast an I Ching Reading Online ↗</a>
+            </div>
+          </div>
+        </article>
+        <article class="media-card">
+          <div class="media-pair">
+            <a href="https://hexsage.ai/how-to-read-changing-lines" target="_blank" rel="noopener">
+              <img src="../assets/thumbnails/ep05.jpg" alt="EP.05 Hidden State Machines: Moving Lines, XOR Flips & Latent Fu-Shen" loading="lazy" />
+            </a>
+            <a href="visualizers/ep05.html" target="_blank">
+              <img src="../assets/previews/ep05.gif" alt="EP.05 Animated Preview" loading="lazy" />
+            </a>
+          </div>
+          <div class="media-body">
+            <div class="badge-row">
+              <span class="ep-tag">EPISODE 05</span>
+              <a class="viz-pill" href="visualizers/ep05.html" target="_blank">▶️ Launch 2K Interactive Canvas ↗</a>
+            </div>
+            <h3><a href="https://hexsage.ai/how-to-read-changing-lines" target="_blank" rel="noopener">Hidden State Machines: Moving Lines, XOR Flips & Latent Fu-Shen</a></h3>
+            <p class="math-note">State Transition S₁ = S₀ ⊕ M, 1-to-1 Channel Isolation, Latent Variable Lookup from Palace Root</p>
+            <div class="card-links">
+              <a class="link-gold" href="https://hexsage.ai/how-to-read-changing-lines" target="_blank" rel="noopener">🧭 How to Read Changing Lines (0 to 6 Moving Lines Rules) ↗</a>
+              <a class="link-blue" href="https://hexsage.ai/blog/64-hexagrams/33-dun" target="_blank" rel="noopener">⚡ Hexagram 33 Dun (Retreat) Line Study ↗</a>
+            </div>
+          </div>
+        </article>
+        <article class="media-card">
+          <div class="media-pair">
+            <a href="https://hexsage.ai/yes-no-oracle" target="_blank" rel="noopener">
+              <img src="../assets/thumbnails/ep06.jpg" alt="EP.06 The 60-Chronon Null Matrix & Exact Event Timing Solver (T*)" loading="lazy" />
+            </a>
+            <a href="visualizers/ep06.html" target="_blank">
+              <img src="../assets/previews/ep06.gif" alt="EP.06 Animated Preview" loading="lazy" />
+            </a>
+          </div>
+          <div class="media-body">
+            <div class="badge-row">
+              <span class="ep-tag">EPISODE 06</span>
+              <a class="viz-pill" href="visualizers/ep06.html" target="_blank">▶️ Launch 2K Interactive Canvas ↗</a>
+            </div>
+            <h3><a href="https://hexsage.ai/yes-no-oracle" target="_blank" rel="noopener">The 60-Chronon Null Matrix & Exact Event Timing Solver (T*)</a></h3>
+            <p class="math-note">Modulo-12 Remainder Shift (12 - 10 = 2 Null Slots), Bottleneck Resolution T* = argmin Resolve(B)</p>
+            <div class="card-links">
+              <a class="link-gold" href="https://hexsage.ai/yes-no-oracle" target="_blank" rel="noopener">🧭 Yes No Oracle — Instant 6-Line Timing & Decision Verdict ↗</a>
+              <a class="link-blue" href="https://hexsage.ai/blog/64-hexagrams/32-heng" target="_blank" rel="noopener">⚡ Hexagram 32 Heng (Duration) Timing Guide ↗</a>
+            </div>
+          </div>
+        </article>
+        <article class="media-card">
+          <div class="media-pair">
+            <a href="https://hexsage.ai/blog/64-hexagrams" target="_blank" rel="noopener">
+              <img src="../assets/thumbnails/ep07.jpg" alt="EP.07 1060 AD Shao Yong × 1703 Leibniz: The Fuxi 6-Bit Binary Matrix" loading="lazy" />
+            </a>
+            <a href="visualizers/ep07.html" target="_blank">
+              <img src="../assets/previews/ep07.gif" alt="EP.07 Animated Preview" loading="lazy" />
+            </a>
+          </div>
+          <div class="media-body">
+            <div class="badge-row">
+              <span class="ep-tag">EPISODE 07</span>
+              <a class="viz-pill" href="visualizers/ep07.html" target="_blank">▶️ Launch 2K Interactive Canvas ↗</a>
+            </div>
+            <h3><a href="https://hexsage.ai/blog/64-hexagrams" target="_blank" rel="noopener">1060 AD Shao Yong × 1703 Leibniz: The Fuxi 6-Bit Binary Matrix</a></h3>
+            <p class="math-note">Complete Binary Tree (2⁰ → 2⁶ = 64), 8×8 Cartesian Tensor Grid, Bitwise Complement H + H̅ = 63</p>
+            <div class="card-links">
+              <a class="link-gold" href="https://hexsage.ai/blog/64-hexagrams" target="_blank" rel="noopener">🧭 64 Hexagrams Binary Matrix & I Ching Hexagram Chart ↗</a>
+              <a class="link-blue" href="https://hexsage.ai/blog/i-ching-guides/carl-jung-i-ching-synchronicity" target="_blank" rel="noopener">⚡ Carl Jung Synchronicity & Binary Epistemology ↗</a>
+            </div>
+          </div>
+        </article>
+        <article class="media-card">
+          <div class="media-pair">
+            <a href="https://hexsage.ai/i-ching-generator" target="_blank" rel="noopener">
+              <img src="../assets/thumbnails/ep08.jpg" alt="EP.08 The M=15 Magic Square & Trigram Topology: He-Tu & Luo-Shu" loading="lazy" />
+            </a>
+            <a href="visualizers/ep08.html" target="_blank">
+              <img src="../assets/previews/ep08.gif" alt="EP.08 Animated Preview" loading="lazy" />
+            </a>
+          </div>
+          <div class="media-body">
+            <div class="badge-row">
+              <span class="ep-tag">EPISODE 08</span>
+              <a class="viz-pill" href="visualizers/ep08.html" target="_blank">▶️ Launch 2K Interactive Canvas ↗</a>
+            </div>
+            <h3><a href="https://hexsage.ai/i-ching-generator" target="_blank" rel="noopener">The M=15 Magic Square & Trigram Topology: He-Tu & Luo-Shu</a></h3>
+            <p class="math-note">Modulo-5 Cosets (C_i - S_i = 5), 3×3 Magic Square Constant M=15, Dihedral Group D₄ Symmetry Breaking</p>
+            <div class="card-links">
+              <a class="link-gold" href="https://hexsage.ai/i-ching-generator" target="_blank" rel="noopener">🧭 Online I Ching Trigram & Hexagram Generator ↗</a>
+              <a class="link-blue" href="https://hexsage.ai/blog/64-hexagrams/11-tai" target="_blank" rel="noopener">⚡ Hexagram 11 Tai (Harmony) Structural Balance ↗</a>
+            </div>
+          </div>
+        </article>
+        <article class="media-card">
+          <div class="media-pair">
+            <a href="https://hexsage.ai/blog/64-hexagrams/24-fu" target="_blank" rel="noopener">
+              <img src="../assets/thumbnails/ep09.jpg" alt="EP.09 The 12 Tidal Hexagrams & 24 Solar Terms: 6-Bit Shift Register" loading="lazy" />
+            </a>
+            <a href="visualizers/ep09.html" target="_blank">
+              <img src="../assets/previews/ep09.gif" alt="EP.09 Animated Preview" loading="lazy" />
+            </a>
+          </div>
+          <div class="media-body">
+            <div class="badge-row">
+              <span class="ep-tag">EPISODE 09</span>
+              <a class="viz-pill" href="visualizers/ep09.html" target="_blank">▶️ Launch 2K Interactive Canvas ↗</a>
+            </div>
+            <h3><a href="https://hexsage.ai/blog/64-hexagrams/24-fu" target="_blank" rel="noopener">The 12 Tidal Hexagrams & 24 Solar Terms: 6-Bit Shift Register</a></h3>
+            <p class="math-note">Circular Shift Register Hamming Weight E(k) = 3 + 3·sin((k-2)π/6), Thermal Phase Lag Δφ ≈ 30°</p>
+            <div class="card-links">
+              <a class="link-gold" href="https://hexsage.ai/blog/64-hexagrams/24-fu" target="_blank" rel="noopener">🧭 Hexagram 24 Fu (Return) Inflection Point Analysis ↗</a>
+              <a class="link-blue" href="https://hexsage.ai/blog/64-hexagrams" target="_blank" rel="noopener">⚡ All 64 I Ching Hexagrams Explained ↗</a>
+            </div>
+          </div>
+        </article>
+        <article class="media-card">
+          <div class="media-pair">
+            <a href="https://hexsage.ai/yarrow-stalks-i-ching" target="_blank" rel="noopener">
+              <img src="../assets/thumbnails/ep10.jpg" alt="EP.10 Why 49 Yarrow Stalks Make Yang Move 3× More Than Yin (1:5:7:3 Proof)" loading="lazy" />
+            </a>
+            <a href="visualizers/ep10.html" target="_blank">
+              <img src="../assets/previews/ep10.gif" alt="EP.10 Animated Preview" loading="lazy" />
+            </a>
+          </div>
+          <div class="media-body">
+            <div class="badge-row">
+              <span class="ep-tag">EPISODE 10</span>
+              <a class="viz-pill" href="visualizers/ep10.html" target="_blank">▶️ Launch 2K Interactive Canvas ↗</a>
+            </div>
+            <h3><a href="https://hexsage.ai/yarrow-stalks-i-ching" target="_blank" rel="noopener">Why 49 Yarrow Stalks Make Yang Move 3× More Than Yin (1:5:7:3 Proof)</a></h3>
+            <p class="math-note">Modulo-4 Remainder Tree: P(6)=1/16, P(7)=5/16, P(8)=7/16, P(9)=3/16; Shannon Entropy 1.754 vs 1.811 bits</p>
+            <div class="card-links">
+              <a class="link-gold" href="https://hexsage.ai/yarrow-stalks-i-ching" target="_blank" rel="noopener">🧭 Yarrow Stalks I Ching — 49-Stalk 18-Change Interactive Simulator ↗</a>
+              <a class="link-blue" href="https://hexsage.ai/i-ching-generator" target="_blank" rel="noopener">⚡ 3-Coin vs Yarrow Stalks I Ching Generator ↗</a>
+            </div>
+          </div>
+        </article>
+        <article class="media-card">
+          <div class="media-pair">
+            <a href="https://hexsage.ai/blog/64-hexagrams/01-qian" target="_blank" rel="noopener">
+              <img src="../assets/thumbnails/ep11.jpg" alt="EP.11 6 Stages of Leverage: Hexagram #1 Qian [111111] & Kelly Criterion" loading="lazy" />
+            </a>
+            <a href="visualizers/ep11.html" target="_blank">
+              <img src="../assets/previews/ep11.gif" alt="EP.11 Animated Preview" loading="lazy" />
+            </a>
+          </div>
+          <div class="media-body">
+            <div class="badge-row">
+              <span class="ep-tag">EPISODE 11</span>
+              <a class="viz-pill" href="visualizers/ep11.html" target="_blank">▶️ Launch 2K Interactive Canvas ↗</a>
+            </div>
+            <h3><a href="https://hexsage.ai/blog/64-hexagrams/01-qian" target="_blank" rel="noopener">6 Stages of Leverage: Hexagram #1 Qian [111111] & Kelly Criterion</a></h3>
+            <p class="math-note">S-Curve Logistic Growth, Kelly Position Sizing f* = (bp - q)/b, Decentralized Protocol (Yong Jiu)</p>
+            <div class="card-links">
+              <a class="link-gold" href="https://hexsage.ai/blog/64-hexagrams/01-qian" target="_blank" rel="noopener">🧭 Hexagram 1 Qian (The Creative) — All 6 Lines & Strategic Guide ↗</a>
+              <a class="link-blue" href="https://hexsage.ai/i-ching-career-guidance" target="_blank" rel="noopener">⚡ I Ching Career & Capital Allocation Sandbox ↗</a>
+            </div>
+          </div>
+        </article>
+        <article class="media-card">
+          <div class="media-pair">
+            <a href="https://hexsage.ai/i-ching-career-guidance" target="_blank" rel="noopener">
+              <img src="../assets/thumbnails/ep12.jpg" alt="EP.12 Oriental Game Theory: Six-Yao Matrix for Forensic Cashflow Audits" loading="lazy" />
+            </a>
+            <a href="visualizers/ep12.html" target="_blank">
+              <img src="../assets/previews/ep12.gif" alt="EP.12 Animated Preview" loading="lazy" />
+            </a>
+          </div>
+          <div class="media-body">
+            <div class="badge-row">
+              <span class="ep-tag">EPISODE 12</span>
+              <a class="viz-pill" href="visualizers/ep12.html" target="_blank">▶️ Launch 2K Interactive Canvas ↗</a>
+            </div>
+            <h3><a href="https://hexsage.ai/i-ching-career-guidance" target="_blank" rel="noopener">Oriental Game Theory: Six-Yao Matrix for Forensic Cashflow Audits</a></h3>
+            <p class="math-note">2×2 SELF [Shi] vs OTHER [Ying] Payoff Matrix, Cashflow Differential d(Cash)/dt = α·Output - β·Peer</p>
+            <div class="card-links">
+              <a class="link-gold" href="https://hexsage.ai/i-ching-career-guidance" target="_blank" rel="noopener">🧭 I Ching Career Guidance & Business Decision Matrix ↗</a>
+              <a class="link-blue" href="https://hexsage.ai/iching-interpretation" target="_blank" rel="noopener">⚡ Interpret Your Hexagram & Moving Lines ↗</a>
+            </div>
+          </div>
+        </article>
+    </div>
+  </section>
+
+  <section class="sec">
+    <h2 class="sec-h2">📐 Part II: 10-Volume "Oriental Metaphysics × Modern Mathematics" CheatSheets &amp; Shorts</h2>
+    <p class="sec-lead">High-density mathematical reference cards and animations covering Circulant Matrices (Z₅), Modular Congruence, Boolean Hypercubes (Q₆), Gray Codes, Walsh-Hadamard Gates, Lo Shu Eigenvalues, and Asymmetric Markov Chains:</p>
+    <div class="vol-grid">
+      
+        <article class="vol-card">
+          <div class="vol-visuals">
+            <a href="https://hexsage.ai/iching-interpretation" target="_blank" rel="noopener">
+              <img src="../assets/previews/vol01.gif" alt="VOL.01 Wuxing Five Elements: Z₅ Circulant Permutation Matrix Animation" loading="lazy" />
+            </a>
+            <a href="https://hexsage.ai/iching-interpretation" target="_blank" rel="noopener">
+              <img src="../assets/cheatsheets/vol01_cheatsheet.png" alt="VOL.01 Wuxing Five Elements: Z₅ Circulant Permutation Matrix CheatSheet" loading="lazy" />
+            </a>
+          </div>
+          <div class="vol-info">
+            <span class="ep-tag">MATH MONOGRAPH VOL.01</span>
+            <h3><a href="https://hexsage.ai/iching-interpretation" target="_blank" rel="noopener">Wuxing Five Elements: Z₅ Circulant Permutation Matrix</a></h3>
+            <code class="eq-box">M_gen² = M_ctrl ∧ M_ctrl² = M_genᵀ</code>
+            <div style="margin-top:10px;">
+              <a class="link-gold" href="https://hexsage.ai/iching-interpretation" target="_blank" rel="noopener">Explore I Ching Interpretation Tool on HexSage.ai ↗</a>
+            </div>
+          </div>
+        </article>
+        <article class="vol-card">
+          <div class="vol-visuals">
+            <a href="https://hexsage.ai/" target="_blank" rel="noopener">
+              <img src="../assets/previews/vol02.gif" alt="VOL.02 60-Jiazi Calendar: Modular Congruence & Parity Lock Animation" loading="lazy" />
+            </a>
+            <a href="https://hexsage.ai/" target="_blank" rel="noopener">
+              <img src="../assets/cheatsheets/vol02_cheatsheet.png" alt="VOL.02 60-Jiazi Calendar: Modular Congruence & Parity Lock CheatSheet" loading="lazy" />
+            </a>
+          </div>
+          <div class="vol-info">
+            <span class="ep-tag">MATH MONOGRAPH VOL.02</span>
+            <h3><a href="https://hexsage.ai/" target="_blank" rel="noopener">60-Jiazi Calendar: Modular Congruence & Parity Lock</a></h3>
+            <code class="eq-box">t ≡ a (mod 10) ∧ t ≡ b (mod 12) ⇒ gcd(10,12) = 2</code>
+            <div style="margin-top:10px;">
+              <a class="link-gold" href="https://hexsage.ai/" target="_blank" rel="noopener">Explore I Ching Online True Solar Time on HexSage.ai ↗</a>
+            </div>
+          </div>
+        </article>
+        <article class="vol-card">
+          <div class="vol-visuals">
+            <a href="https://hexsage.ai/blog/64-hexagrams" target="_blank" rel="noopener">
+              <img src="../assets/previews/vol03.gif" alt="VOL.03 64 Hexagrams: 6D Boolean Hypercube (Q₆) & Hamming Distance Animation" loading="lazy" />
+            </a>
+            <a href="https://hexsage.ai/blog/64-hexagrams" target="_blank" rel="noopener">
+              <img src="../assets/cheatsheets/vol03_cheatsheet.png" alt="VOL.03 64 Hexagrams: 6D Boolean Hypercube (Q₆) & Hamming Distance CheatSheet" loading="lazy" />
+            </a>
+          </div>
+          <div class="vol-info">
+            <span class="ep-tag">MATH MONOGRAPH VOL.03</span>
+            <h3><a href="https://hexsage.ai/blog/64-hexagrams" target="_blank" rel="noopener">64 Hexagrams: 6D Boolean Hypercube (Q₆) & Hamming Distance</a></h3>
+            <code class="eq-box">H₆ = (Z₂)⁶, d_H(u,v) = ∑ |u_i ⊕ v_i|</code>
+            <div style="margin-top:10px;">
+              <a class="link-gold" href="https://hexsage.ai/blog/64-hexagrams" target="_blank" rel="noopener">Explore Complete 64 I Ching Hexagrams Chart on HexSage.ai ↗</a>
+            </div>
+          </div>
+        </article>
+        <article class="vol-card">
+          <div class="vol-visuals">
+            <a href="https://hexsage.ai/blog/64-hexagrams" target="_blank" rel="noopener">
+              <img src="../assets/previews/vol04.gif" alt="VOL.04 Jing Fang's 8 Palaces: Gray Code Hamiltonian Path & Cosets Animation" loading="lazy" />
+            </a>
+            <a href="https://hexsage.ai/blog/64-hexagrams" target="_blank" rel="noopener">
+              <img src="../assets/cheatsheets/vol04_cheatsheet.png" alt="VOL.04 Jing Fang's 8 Palaces: Gray Code Hamiltonian Path & Cosets CheatSheet" loading="lazy" />
+            </a>
+          </div>
+          <div class="vol-info">
+            <span class="ep-tag">MATH MONOGRAPH VOL.04</span>
+            <h3><a href="https://hexsage.ai/blog/64-hexagrams" target="_blank" rel="noopener">Jing Fang's 8 Palaces: Gray Code Hamiltonian Path & Cosets</a></h3>
+            <code class="eq-box">g_{k+1} = g_k ⊕ e_σ(k), σ = (1,2,3,4,5,4,123)</code>
+            <div style="margin-top:10px;">
+              <a class="link-gold" href="https://hexsage.ai/blog/64-hexagrams" target="_blank" rel="noopener">Explore I Ching Interpretations & 8 Palaces on HexSage.ai ↗</a>
+            </div>
+          </div>
+        </article>
+        <article class="vol-card">
+          <div class="vol-visuals">
+            <a href="https://hexsage.ai/i-ching-generator" target="_blank" rel="noopener">
+              <img src="../assets/previews/vol05.gif" alt="VOL.05 Shao Yong Binary Tree: Walsh-Hadamard Quantum Gate Matrix Animation" loading="lazy" />
+            </a>
+            <a href="https://hexsage.ai/i-ching-generator" target="_blank" rel="noopener">
+              <img src="../assets/cheatsheets/vol05_cheatsheet.png" alt="VOL.05 Shao Yong Binary Tree: Walsh-Hadamard Quantum Gate Matrix CheatSheet" loading="lazy" />
+            </a>
+          </div>
+          <div class="vol-info">
+            <span class="ep-tag">MATH MONOGRAPH VOL.05</span>
+            <h3><a href="https://hexsage.ai/i-ching-generator" target="_blank" rel="noopener">Shao Yong Binary Tree: Walsh-Hadamard Quantum Gate Matrix</a></h3>
+            <code class="eq-box">H_{2^n} = H₂^{⊗n}, C(6,3) = 20 Balanced States</code>
+            <div style="margin-top:10px;">
+              <a class="link-gold" href="https://hexsage.ai/i-ching-generator" target="_blank" rel="noopener">Explore I Ching Generator & Binary Tree on HexSage.ai ↗</a>
+            </div>
+          </div>
+        </article>
+        <article class="vol-card">
+          <div class="vol-visuals">
+            <a href="https://hexsage.ai/i-ching-career-guidance" target="_blank" rel="noopener">
+              <img src="../assets/previews/vol06.gif" alt="VOL.06 Lo Shu 3×3 Magic Square: Eigenvalues & D₄ Dihedral Group Animation" loading="lazy" />
+            </a>
+            <a href="https://hexsage.ai/i-ching-career-guidance" target="_blank" rel="noopener">
+              <img src="../assets/cheatsheets/vol06_cheatsheet.png" alt="VOL.06 Lo Shu 3×3 Magic Square: Eigenvalues & D₄ Dihedral Group CheatSheet" loading="lazy" />
+            </a>
+          </div>
+          <div class="vol-info">
+            <span class="ep-tag">MATH MONOGRAPH VOL.06</span>
+            <h3><a href="https://hexsage.ai/i-ching-career-guidance" target="_blank" rel="noopener">Lo Shu 3×3 Magic Square: Eigenvalues & D₄ Dihedral Group</a></h3>
+            <code class="eq-box">L·1 = 15·1, λ ∈ {15, +2√6, -2√6}</code>
+            <div style="margin-top:10px;">
+              <a class="link-gold" href="https://hexsage.ai/i-ching-career-guidance" target="_blank" rel="noopener">Explore I Ching Strategic Decision Matrix on HexSage.ai ↗</a>
+            </div>
+          </div>
+        </article>
+        <article class="vol-card">
+          <div class="vol-visuals">
+            <a href="https://hexsage.ai/iching-interpretation" target="_blank" rel="noopener">
+              <img src="../assets/previews/vol07.gif" alt="VOL.07 60-Jiazi Nayin Acoustics: Quotient Group Homomorphism Animation" loading="lazy" />
+            </a>
+            <a href="https://hexsage.ai/iching-interpretation" target="_blank" rel="noopener">
+              <img src="../assets/cheatsheets/vol07_cheatsheet.png" alt="VOL.07 60-Jiazi Nayin Acoustics: Quotient Group Homomorphism CheatSheet" loading="lazy" />
+            </a>
+          </div>
+          <div class="vol-info">
+            <span class="ep-tag">MATH MONOGRAPH VOL.07</span>
+            <h3><a href="https://hexsage.ai/iching-interpretation" target="_blank" rel="noopener">60-Jiazi Nayin Acoustics: Quotient Group Homomorphism</a></h3>
+            <code class="eq-box">φ: Z₆₀ → Z₃₀ ↠ Z₅ Surjective Folding</code>
+            <div style="margin-top:10px;">
+              <a class="link-gold" href="https://hexsage.ai/iching-interpretation" target="_blank" rel="noopener">Explore Classical Hexagram Interpretation on HexSage.ai ↗</a>
+            </div>
+          </div>
+        </article>
+        <article class="vol-card">
+          <div class="vol-visuals">
+            <a href="https://hexsage.ai/yarrow-stalks-i-ching" target="_blank" rel="noopener">
+              <img src="../assets/previews/vol08.gif" alt="VOL.08 50 Yarrow Stalks: Asymmetric Markov Chain (1:5:7:3 Prior) Animation" loading="lazy" />
+            </a>
+            <a href="https://hexsage.ai/yarrow-stalks-i-ching" target="_blank" rel="noopener">
+              <img src="../assets/cheatsheets/vol08_cheatsheet.png" alt="VOL.08 50 Yarrow Stalks: Asymmetric Markov Chain (1:5:7:3 Prior) CheatSheet" loading="lazy" />
+            </a>
+          </div>
+          <div class="vol-info">
+            <span class="ep-tag">MATH MONOGRAPH VOL.08</span>
+            <h3><a href="https://hexsage.ai/yarrow-stalks-i-ching" target="_blank" rel="noopener">50 Yarrow Stalks: Asymmetric Markov Chain (1:5:7:3 Prior)</a></h3>
+            <code class="eq-box">P(6)=1/16, P(7)=5/16, P(8)=7/16, P(9)=3/16</code>
+            <div style="margin-top:10px;">
+              <a class="link-gold" href="https://hexsage.ai/yarrow-stalks-i-ching" target="_blank" rel="noopener">Explore Yarrow Stalks I Ching Simulator on HexSage.ai ↗</a>
+            </div>
+          </div>
+        </article>
+        <article class="vol-card">
+          <div class="vol-visuals">
+            <a href="https://hexsage.ai/how-to-read-changing-lines" target="_blank" rel="noopener">
+              <img src="../assets/previews/vol09.gif" alt="VOL.09 12 Earthly Branches: Dihedral Group D₁₂ Rotations & Reflections Animation" loading="lazy" />
+            </a>
+            <a href="https://hexsage.ai/how-to-read-changing-lines" target="_blank" rel="noopener">
+              <img src="../assets/cheatsheets/vol09_cheatsheet.png" alt="VOL.09 12 Earthly Branches: Dihedral Group D₁₂ Rotations & Reflections CheatSheet" loading="lazy" />
+            </a>
+          </div>
+          <div class="vol-info">
+            <span class="ep-tag">MATH MONOGRAPH VOL.09</span>
+            <h3><a href="https://hexsage.ai/how-to-read-changing-lines" target="_blank" rel="noopener">12 Earthly Branches: Dihedral Group D₁₂ Rotations & Reflections</a></h3>
+            <code class="eq-box">Clash(b) ≡ b + 6 (mod 12), Harmony(b) ≡ 1 - b (mod 12)</code>
+            <div style="margin-top:10px;">
+              <a class="link-gold" href="https://hexsage.ai/how-to-read-changing-lines" target="_blank" rel="noopener">Explore How to Read Changing Lines on HexSage.ai ↗</a>
+            </div>
+          </div>
+        </article>
+        <article class="vol-card">
+          <div class="vol-visuals">
+            <a href="https://hexsage.ai/yes-no-oracle" target="_blank" rel="noopener">
+              <img src="../assets/previews/vol10.gif" alt="VOL.10 Fuxi Circle & Square Diagram: 64-Order Kronecker Tensor Product Animation" loading="lazy" />
+            </a>
+            <a href="https://hexsage.ai/yes-no-oracle" target="_blank" rel="noopener">
+              <img src="../assets/cheatsheets/vol10_cheatsheet.png" alt="VOL.10 Fuxi Circle & Square Diagram: 64-Order Kronecker Tensor Product CheatSheet" loading="lazy" />
+            </a>
+          </div>
+          <div class="vol-info">
+            <span class="ep-tag">MATH MONOGRAPH VOL.10</span>
+            <h3><a href="https://hexsage.ai/yes-no-oracle" target="_blank" rel="noopener">Fuxi Circle & Square Diagram: 64-Order Kronecker Tensor Product</a></h3>
+            <code class="eq-box">G₆₄ = v_upper ⊗ v_lowerᵀ ∈ R^{8×8}</code>
+            <div style="margin-top:10px;">
+              <a class="link-gold" href="https://hexsage.ai/yes-no-oracle" target="_blank" rel="noopener">Explore Yes No Oracle Binary Verdict on HexSage.ai ↗</a>
+            </div>
+          </div>
+        </article>
+    </div>
+  </section>
+
+  <section class="sec">
+    <h2 class="sec-h2">📊 Part III: Complete 64 I Ching Hexagrams (000000 – 111111) Canonical Directory</h2>
+    <p class="sec-lead">Direct links to all 64 canonical hexagram reference pages on <a href="https://hexsage.ai/blog/64-hexagrams" style="color:var(--gold-lt);">hexsage.ai/blog/64-hexagrams</a>:</p>
+    <div class="hex-grid">
+      
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/01-qian" target="_blank" rel="noopener">
+          <div class="bits">#01 · 111111</div>
+          <div class="title">Hexagram 1: Qian</div>
+          <div class="sub-t">The Creative</div>
+          <div class="desc">Pure Yang Initiative & Sovereign Momentum</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/02-kun" target="_blank" rel="noopener">
+          <div class="bits">#02 · 000000</div>
+          <div class="title">Hexagram 2: Kun</div>
+          <div class="sub-t">The Receptive</div>
+          <div class="desc">Receptive Capacity & Adaptive Infrastructure</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/03-zhun" target="_blank" rel="noopener">
+          <div class="bits">#03 · 100010</div>
+          <div class="title">Hexagram 3: Zhun</div>
+          <div class="sub-t">Difficulty at the Beginning</div>
+          <div class="desc">Initial Entropy & Foundational Incubation</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/04-meng" target="_blank" rel="noopener">
+          <div class="bits">#04 · 010001</div>
+          <div class="title">Hexagram 4: Meng</div>
+          <div class="sub-t">Youthful Folly</div>
+          <div class="desc">Cognitive Calibration & Disciplined Inquiry</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/05-xu" target="_blank" rel="noopener">
+          <div class="bits">#05 · 111010</div>
+          <div class="title">Hexagram 5: Xu</div>
+          <div class="sub-t">Waiting (Nourishment)</div>
+          <div class="desc">Strategic Patience Before Critical Threshold</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/06-song" target="_blank" rel="noopener">
+          <div class="bits">#06 · 010111</div>
+          <div class="title">Hexagram 6: Song</div>
+          <div class="sub-t">Conflict</div>
+          <div class="desc">Asymmetric Friction & Boundary Negotiation</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/07-shi" target="_blank" rel="noopener">
+          <div class="bits">#07 · 010000</div>
+          <div class="title">Hexagram 7: Shi</div>
+          <div class="sub-t">The Army</div>
+          <div class="desc">Disciplined Resource Mobilization</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/08-bi" target="_blank" rel="noopener">
+          <div class="bits">#08 · 000010</div>
+          <div class="title">Hexagram 8: Bi</div>
+          <div class="sub-t">Holding Together</div>
+          <div class="desc">Coalition Alignment & Trust Gravity</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/09-xiaoxu" target="_blank" rel="noopener">
+          <div class="bits">#09 · 111011</div>
+          <div class="title">Hexagram 9: Xiao Xu</div>
+          <div class="sub-t">Small Taming</div>
+          <div class="desc">Incremental Leverage & Micro-Accumulation</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/10-lv" target="_blank" rel="noopener">
+          <div class="bits">#10 · 110111</div>
+          <div class="title">Hexagram 10: Lv</div>
+          <div class="sub-t">Treading (Conduct)</div>
+          <div class="desc">High-Risk Navigation & Protocol Precision</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/11-tai" target="_blank" rel="noopener">
+          <div class="bits">#11 · 111000</div>
+          <div class="title">Hexagram 11: Tai</div>
+          <div class="sub-t">Peace (Harmony)</div>
+          <div class="desc">Optimal Flow & Cross-System Synergy</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/12-pi" target="_blank" rel="noopener">
+          <div class="bits">#12 · 000111</div>
+          <div class="title">Hexagram 12: Pi</div>
+          <div class="sub-t">Standstill (Stagnation)</div>
+          <div class="desc">Systemic Decoupling & Defensive Preservation</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/13-tongren" target="_blank" rel="noopener">
+          <div class="bits">#13 · 101111</div>
+          <div class="title">Hexagram 13: Tong Ren</div>
+          <div class="sub-t">Fellowship with Men</div>
+          <div class="desc">Open-Network Collaboration & Shared Vision</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/14-dayou" target="_blank" rel="noopener">
+          <div class="bits">#14 · 111101</div>
+          <div class="title">Hexagram 14: Da You</div>
+          <div class="sub-t">Possession in Great Measure</div>
+          <div class="desc">Abundant Capital & High-Visibility Stewardship</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/15-qian" target="_blank" rel="noopener">
+          <div class="bits">#15 · 001000</div>
+          <div class="title">Hexagram 15: Qian (Modesty)</div>
+          <div class="sub-t">Modesty</div>
+          <div class="desc">Structural Equilibrium & Low-Ego Leverage</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/16-yu" target="_blank" rel="noopener">
+          <div class="bits">#16 · 000100</div>
+          <div class="title">Hexagram 16: Yu</div>
+          <div class="sub-t">Enthusiasm</div>
+          <div class="desc">Momentum Preparation & Early-Warning Readiness</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/17-sui" target="_blank" rel="noopener">
+          <div class="bits">#17 · 100110</div>
+          <div class="title">Hexagram 17: Sui</div>
+          <div class="sub-t">Following</div>
+          <div class="desc">Adaptive Flow & Context-Driven Alignment</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/18-gu" target="_blank" rel="noopener">
+          <div class="bits">#18 · 011001</div>
+          <div class="title">Hexagram 18: Gu</div>
+          <div class="sub-t">Work on What Has Been Spoiled</div>
+          <div class="desc">Technical Debt Remediation & Root-Cause Audit</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/19-lin" target="_blank" rel="noopener">
+          <div class="bits">#19 · 110000</div>
+          <div class="title">Hexagram 19: Lin</div>
+          <div class="sub-t">Approach</div>
+          <div class="desc">Ascending Window & Proactive Supervision</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/20-guan" target="_blank" rel="noopener">
+          <div class="bits">#20 · 000011</div>
+          <div class="title">Hexagram 20: Guan</div>
+          <div class="sub-t">Contemplation (View)</div>
+          <div class="desc">Macro Observation Before Commitment</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/21-shike" target="_blank" rel="noopener">
+          <div class="bits">#21 · 100101</div>
+          <div class="title">Hexagram 21: Shi Ke</div>
+          <div class="sub-t">Biting Through</div>
+          <div class="desc">Decisive Enforcement & Obstacle Removal</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/22-bi" target="_blank" rel="noopener">
+          <div class="bits">#22 · 101001</div>
+          <div class="title">Hexagram 22: Bi (Grace)</div>
+          <div class="sub-t">Grace</div>
+          <div class="desc">Aesthetic Signal Clarity & Form Optimization</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/23-bo" target="_blank" rel="noopener">
+          <div class="bits">#23 · 000001</div>
+          <div class="title">Hexagram 23: Bo</div>
+          <div class="sub-t">Splitting Apart</div>
+          <div class="desc">Structural Erosion & Core Asset Conservation</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/24-fu" target="_blank" rel="noopener">
+          <div class="bits">#24 · 100000</div>
+          <div class="title">Hexagram 24: Fu</div>
+          <div class="sub-t">Return (The Turning Point)</div>
+          <div class="desc">Inflection Point & First-Principle Renewal</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/25-wuwang" target="_blank" rel="noopener">
+          <div class="bits">#25 · 100111</div>
+          <div class="title">Hexagram 25: Wu Wang</div>
+          <div class="sub-t">Innocence (The Unexpected)</div>
+          <div class="desc">Non-Entangled Action & Stochastic Resilience</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/26-daxu" target="_blank" rel="noopener">
+          <div class="bits">#26 · 111001</div>
+          <div class="title">Hexagram 26: Da Xu</div>
+          <div class="sub-t">Great Taming</div>
+          <div class="desc">Deep Reserve Compounding & Institutional Memory</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/27-yi" target="_blank" rel="noopener">
+          <div class="bits">#27 · 100001</div>
+          <div class="title">Hexagram 27: Yi (Nourishment)</div>
+          <div class="sub-t">The Corners of the Mouth</div>
+          <div class="desc">Input/Output Hygiene & Information Diet</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/28-daguo" target="_blank" rel="noopener">
+          <div class="bits">#28 · 011110</div>
+          <div class="title">Hexagram 28: Da Guo</div>
+          <div class="sub-t">Preponderance of the Great</div>
+          <div class="desc">Structural Overload & High-Stakes Transition</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/29-kan" target="_blank" rel="noopener">
+          <div class="bits">#29 · 010010</div>
+          <div class="title">Hexagram 29: Kan</div>
+          <div class="sub-t">The Abysmal (Water)</div>
+          <div class="desc">Cascading Uncertainty & Core Integrity</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/30-li" target="_blank" rel="noopener">
+          <div class="bits">#30 · 101101</div>
+          <div class="title">Hexagram 30: Li</div>
+          <div class="sub-t">The Clinging (Fire)</div>
+          <div class="desc">Lucid Perception & Network Illumination</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/31-xian" target="_blank" rel="noopener">
+          <div class="bits">#31 · 001110</div>
+          <div class="title">Hexagram 31: Xian</div>
+          <div class="sub-t">Influence (Mutual Attraction)</div>
+          <div class="desc">Mutual Resonance & Unforced Alignment</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/32-heng" target="_blank" rel="noopener">
+          <div class="bits">#32 · 011100</div>
+          <div class="title">Hexagram 32: Heng</div>
+          <div class="sub-t">Duration</div>
+          <div class="desc">Dynamic Stability & Long-Horizon Compounding</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/33-dun" target="_blank" rel="noopener">
+          <div class="bits">#33 · 001111</div>
+          <div class="title">Hexagram 33: Dun</div>
+          <div class="sub-t">Retreat</div>
+          <div class="desc">Tactical De-Escalation & Timing the Exit</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/34-dazhuang" target="_blank" rel="noopener">
+          <div class="bits">#34 · 111100</div>
+          <div class="title">Hexagram 34: Da Zhuang</div>
+          <div class="sub-t">The Power of the Great</div>
+          <div class="desc">Peak Force Restraint & Rule-Bound Power</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/35-jin" target="_blank" rel="noopener">
+          <div class="bits">#35 · 000101</div>
+          <div class="title">Hexagram 35: Jin</div>
+          <div class="sub-t">Progress</div>
+          <div class="desc">Rapid Ascent & Transparent Value Creation</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/36-mingyi" target="_blank" rel="noopener">
+          <div class="bits">#36 · 101000</div>
+          <div class="title">Hexagram 36: Ming Yi</div>
+          <div class="sub-t">Darkening of the Light</div>
+          <div class="desc">Concealed Intelligence Under Adverse Regimes</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/37-jiaren" target="_blank" rel="noopener">
+          <div class="bits">#37 · 101011</div>
+          <div class="title">Hexagram 37: Jia Ren</div>
+          <div class="sub-t">The Family (The Clan)</div>
+          <div class="desc">Internal Governance & Role Clarity</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/38-kui" target="_blank" rel="noopener">
+          <div class="bits">#38 · 110101</div>
+          <div class="title">Hexagram 38: Kui</div>
+          <div class="sub-t">Opposition</div>
+          <div class="desc">Productive Polarity & Narrow-Scope Cooperation</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/39-jian" target="_blank" rel="noopener">
+          <div class="bits">#39 · 001010</div>
+          <div class="title">Hexagram 39: Jian (Obstruction)</div>
+          <div class="sub-t">Obstruction</div>
+          <div class="desc">Lateral Recalibration & Ally Consolidation</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/40-xie" target="_blank" rel="noopener">
+          <div class="bits">#40 · 010100</div>
+          <div class="title">Hexagram 40: Xie</div>
+          <div class="sub-t">Deliverance</div>
+          <div class="desc">Tension Release & Rapid Post-Crisis Execution</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/41-sun" target="_blank" rel="noopener">
+          <div class="bits">#41 · 110001</div>
+          <div class="title">Hexagram 41: Sun</div>
+          <div class="sub-t">Decrease</div>
+          <div class="desc">Strategic Pruning & Complexity Reduction</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/42-yi" target="_blank" rel="noopener">
+          <div class="bits">#42 · 100011</div>
+          <div class="title">Hexagram 42: Yi (Increase)</div>
+          <div class="sub-t">Increase</div>
+          <div class="desc">Asymmetric Upside & Resource Injection</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/43-guai" target="_blank" rel="noopener">
+          <div class="bits">#43 · 111110</div>
+          <div class="title">Hexagram 43: Guai</div>
+          <div class="sub-t">Breakthrough (Resoluteness)</div>
+          <div class="desc">Public Resolution & Decisive Severance</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/44-gou" target="_blank" rel="noopener">
+          <div class="bits">#44 · 011111</div>
+          <div class="title">Hexagram 44: Gou</div>
+          <div class="sub-t">Coming to Meet</div>
+          <div class="desc">Early Anomaly Detection & Boundary Defense</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/45-cui" target="_blank" rel="noopener">
+          <div class="bits">#45 · 000110</div>
+          <div class="title">Hexagram 45: Cui</div>
+          <div class="sub-t">Gathering Together</div>
+          <div class="desc">Liquidity Aggregation & Contingency Buffering</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/46-sheng" target="_blank" rel="noopener">
+          <div class="bits">#46 · 011000</div>
+          <div class="title">Hexagram 46: Sheng</div>
+          <div class="sub-t">Pushing Upward</div>
+          <div class="desc">Stepwise Organic Growth & Mentor Backing</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/47-kun" target="_blank" rel="noopener">
+          <div class="bits">#47 · 010110</div>
+          <div class="title">Hexagram 47: Kun (Exhaustion)</div>
+          <div class="sub-t">Oppression (Exhaustion)</div>
+          <div class="desc">Resource Constriction & Silent Conviction</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/48-jing" target="_blank" rel="noopener">
+          <div class="bits">#48 · 011010</div>
+          <div class="title">Hexagram 48: Jing</div>
+          <div class="sub-t">The Well</div>
+          <div class="desc">Perennial Infrastructure & Unchanging Core</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/49-ge" target="_blank" rel="noopener">
+          <div class="bits">#49 · 101110</div>
+          <div class="title">Hexagram 49: Ge</div>
+          <div class="sub-t">Revolution (Molting)</div>
+          <div class="desc">Paradigm Shift & Timed Legitimacy</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/50-ding" target="_blank" rel="noopener">
+          <div class="bits">#50 · 011101</div>
+          <div class="title">Hexagram 50: Ding</div>
+          <div class="sub-t">The Cauldron</div>
+          <div class="desc">Alchemical Synthesis & Institutional Refinement</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/51-zhen" target="_blank" rel="noopener">
+          <div class="bits">#51 · 100100</div>
+          <div class="title">Hexagram 51: Zhen</div>
+          <div class="sub-t">The Arousing (Shock)</div>
+          <div class="desc">Black-Swan Reflex & Composure Under Shock</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/52-gen" target="_blank" rel="noopener">
+          <div class="bits">#52 · 001001</div>
+          <div class="title">Hexagram 52: Gen</div>
+          <div class="sub-t">Keeping Still (Mountain)</div>
+          <div class="desc">Cognitive Stillness & Boundary Anchoring</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/53-jian" target="_blank" rel="noopener">
+          <div class="bits">#53 · 001011</div>
+          <div class="title">Hexagram 53: Jian (Development)</div>
+          <div class="sub-t">Development (Gradual Progress)</div>
+          <div class="desc">Sequential Milestones & Sustainable Cadence</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/54-guimei" target="_blank" rel="noopener">
+          <div class="bits">#54 · 110100</div>
+          <div class="title">Hexagram 54: Gui Mei</div>
+          <div class="sub-t">The Marrying Maiden</div>
+          <div class="desc">Subordinate Position & Asymmetric Terms</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/55-feng" target="_blank" rel="noopener">
+          <div class="bits">#55 · 101100</div>
+          <div class="title">Hexagram 55: Feng</div>
+          <div class="sub-t">Abundance (Fullness)</div>
+          <div class="desc">Zenith Clarity & Post-Peak Risk Control</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/56-lv" target="_blank" rel="noopener">
+          <div class="bits">#56 · 001101</div>
+          <div class="title">Hexagram 56: Lv (The Wanderer)</div>
+          <div class="sub-t">The Wanderer</div>
+          <div class="desc">Transient Operations & Low-Footprint Agility</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/57-xun" target="_blank" rel="noopener">
+          <div class="bits">#57 · 011011</div>
+          <div class="title">Hexagram 57: Xun</div>
+          <div class="sub-t">The Gentle (Penetrating Wind)</div>
+          <div class="desc">Subtle Penetration & Iterative Alignment</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/58-dui" target="_blank" rel="noopener">
+          <div class="bits">#58 · 110110</div>
+          <div class="title">Hexagram 58: Dui</div>
+          <div class="sub-t">The Joyous (Lake)</div>
+          <div class="desc">Reciprocal Exchange & Morale Resonance</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/59-huan" target="_blank" rel="noopener">
+          <div class="bits">#59 · 010011</div>
+          <div class="title">Hexagram 59: Huan</div>
+          <div class="sub-t">Dispersion (Dissolution)</div>
+          <div class="desc">Dissolving Silos & Re-Centering Mission</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/60-jie" target="_blank" rel="noopener">
+          <div class="bits">#60 · 110010</div>
+          <div class="title">Hexagram 60: Jie</div>
+          <div class="sub-t">Limitation</div>
+          <div class="desc">Sustainable Constraints & Rate Limiting</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/61-zhongfu" target="_blank" rel="noopener">
+          <div class="bits">#61 · 110011</div>
+          <div class="title">Hexagram 61: Zhong Fu</div>
+          <div class="sub-t">Inner Truth</div>
+          <div class="desc">Signal Authenticity & Game-Theoretic Trust</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/62-xiaoguo" target="_blank" rel="noopener">
+          <div class="bits">#62 · 001100</div>
+          <div class="title">Hexagram 62: Xiao Guo</div>
+          <div class="sub-t">Preponderance of the Small</div>
+          <div class="desc">Granular Caution & Conservative Execution</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/63-jiji" target="_blank" rel="noopener">
+          <div class="bits">#63 · 101010</div>
+          <div class="title">Hexagram 63: Ji Ji</div>
+          <div class="sub-t">After Completion</div>
+          <div class="desc">Dynamic Equilibrium & Entropy Vigilance</div>
+        </a>
+        <a class="hex-item" href="https://hexsage.ai/blog/64-hexagrams/64-weiji" target="_blank" rel="noopener">
+          <div class="bits">#64 · 010101</div>
+          <div class="title">Hexagram 64: Wei Ji</div>
+          <div class="sub-t">Before Completion</div>
+          <div class="desc">Open-Ended Transition & Next-Cycle Genesis</div>
+        </a>
+    </div>
+  </section>
+</div>
+
+<script>
+(function(){
+  const state = [1,1,1,1,1,1];
+  const moving = [0,0,0,0,0,0];
+  const wrap = document.getElementById('q6-lines');
+  const formulaEl = document.getElementById('q6-formula');
+  const zhuxiEl = document.getElementById('q6-zhuxi');
+  function render(){
+    wrap.innerHTML = '';
+    for(let i=0;i<6;i++){
+      const row = document.createElement('div');
+      row.className = 'line-row';
+      row.innerHTML = `<span style="width:52px;font-family:monospace;color:#94a3b8;">Line ${i+1}</span>
+        <div class="line-bar ${state[i]===0?'yin':''}" title="Click to toggle Yin/Yang"></div>
+        <label style="cursor:pointer;display:flex;align-items:center;gap:5px;color:#f5d97e;font-size:12px;">
+          <input type="checkbox" ${moving[i]?'checked':''}/> Moving
+        </label>`;
+      row.querySelector('.line-bar').onclick = ()=>{ state[i] = state[i]^1; render(); };
+      row.querySelector('input').onchange = (e)=>{ moving[i] = e.target.checked?1:0; render(); };
+      wrap.appendChild(row);
+    }
+    const s0 = state.slice().reverse().join('');
+    const m = moving.slice().reverse().join('');
+    const s1 = state.map((b,idx)=>b^moving[idx]).reverse().join('');
+    const k = moving.reduce((a,b)=>a+b,0);
+    formulaEl.textContent = `S₀ = ${s0} ⊕ M = ${m} → S₁ = ${s1} (Hamming Distance d_H = ${k})`;
+    const rules = [
+      '0 Moving Lines: Read Primary Hexagram Judgment (Gua Ci) & Image.',
+      '1 Moving Line: Read that single Moving Line statement in the Primary Hexagram.',
+      '2 Moving Lines: Read both Moving Line statements; the Upper Moving Line takes precedence.',
+      '3 Moving Lines: Weigh Primary Judgment (50%) and Transformed Judgment (50%) equally.',
+      '4 Moving Lines: Read the 2 Non-Moving (Static) Lines in the Transformed Hexagram (Lower Static Line leads).',
+      '5 Moving Lines: Read the single Non-Moving (Static) Line in the Transformed Hexagram.',
+      '6 Moving Lines: Read Transformed Judgment (or Yong Jiu / Yong Liu for Hexagrams 1 & 2).'
+    ];
+    zhuxiEl.textContent = rules[k];
+  }
+  render();
+})();
+</script>
+</body>
+</html>
